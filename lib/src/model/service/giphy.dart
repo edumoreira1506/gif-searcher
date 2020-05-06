@@ -8,8 +8,8 @@ class Giphy {
 
   Giphy(this.key);
 
-  Future<Map> search(String keyword) async {
-    http.Response response = await http.get("${apiUrl}search?api_key=${this.key}&q=$keyword");
+  Future<Map> search(String keyword, int offset) async {
+    http.Response response = await http.get("${apiUrl}search?api_key=${this.key}&q=$keyword&limit=19&offset=$offset");
 
     Map<String, dynamic> parsedReponse = json.decode(response.body);
 
@@ -17,7 +17,7 @@ class Giphy {
   }
 
   Future<Map> getFeatured() async {
-    http.Response response = await http.get("${apiUrl}trending?api_key=${this.key}&limit=25&rating=G");
+    http.Response response = await http.get("${apiUrl}trending?api_key=${this.key}&limit=20&rating=G");
 
     Map<String, dynamic> parsedReponse = json.decode(response.body);
 

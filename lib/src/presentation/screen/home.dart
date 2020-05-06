@@ -22,7 +22,13 @@ class _HomeState extends State<Home> {
 
   Giphy _giphyService;
 
+  bool _featured;
+
   List<GifDTO> _gifs = [];
+
+  int _offset = 19;
+
+  String _keyword;
 
   @override
   void initState() {
@@ -37,16 +43,33 @@ class _HomeState extends State<Home> {
     List<GifDTO> items = _giphyService.unserializeData(serializedData);
 
     setState(() {
+      _featured = true;
       _gifs = items;
     });
   }
 
-  _searchGifs(keyword) async {
-    Map serializedData = await _giphyService.search(keyword);
+  _onLoadMore() {
+    setState(() {
+      _offset += 19;
+      _searchGifs();
+    });
+  }
+
+  _searchGifs() async {
+    Map serializedData = await _giphyService.search(_keyword, _offset);
     List<GifDTO> items = _giphyService.unserializeData(serializedData);
 
     setState(() {
+      _featured = false;
       _gifs = items;
+    });
+  }
+
+  _changeKeyword(keyword) {
+    setState(() {
+      _keyword = keyword;
+      _offset = 0;
+      _searchGifs();
     });
   }
 
@@ -57,8 +80,8 @@ class _HomeState extends State<Home> {
       backgroundColor: Colors.black,
       body: Column(
         children: <Widget>[
-          SearchForm(_searchGifs),
-          GifTable(this._gifs)
+          SearchForm(_changeKeyword),
+          GifTable(this._gifs, this._featured, this._onLoadMore)
         ],
       )
     );

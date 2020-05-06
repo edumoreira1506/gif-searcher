@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gif_searcher/src/model/dto/gif.dart';
 import 'package:gif_searcher/src/presentation/widgets/gif.dart';
+import 'package:gif_searcher/src/presentation/widgets/load_button.dart';
 
 class GifTable extends StatelessWidget {
-  final List<GifDTO> gifs;
+  final List<GifDTO> _gifs;
+  final bool _featured;
+  final void Function() onLoadMore;
 
-  GifTable(this.gifs);
+  GifTable(this._gifs, this._featured, this.onLoadMore);
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +21,11 @@ class GifTable extends StatelessWidget {
           crossAxisSpacing: 10,
           mainAxisSpacing: 10
         ),
-        itemCount: this.gifs.length,
-        itemBuilder: (context, index) => Gif(this.gifs[index].id, this.gifs[index].slug, this.gifs[index].url),
+        itemCount: this._featured ? this._gifs.length : this._gifs.length + 1,
+        itemBuilder: (context, index) =>
+          index < this._gifs.length
+           ? Gif(this._gifs[index].id, this._gifs[index].slug, this._gifs[index].url)
+           : LoadButton(this.onLoadMore)
       )
     );
   }
