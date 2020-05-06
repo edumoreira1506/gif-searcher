@@ -27,6 +27,6 @@ class Giphy {
   List<GifDTO> unserializeData(Map<String, dynamic> serializedData) {
     List<dynamic>  data = serializedData['data'];
 
-    return data.map((item) => GifDTO(id: item['id'], slug: item['slug'], url: item['url'])).toList();
+    return data.map((item) => GifDTO(id: item['id'], slug: item['slug'], url: item['images']['fixed_height']['url'])).toList();
   }
 }

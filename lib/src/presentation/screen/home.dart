@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gif_searcher/src/model/dto/gif.dart';
 import 'package:gif_searcher/src/model/service/giphy.dart';
+import 'package:gif_searcher/src/presentation/widgets/gif_table.dart';
 import 'package:gif_searcher/src/presentation/widgets/header.dart';
 import 'package:gif_searcher/src/presentation/widgets/search_form.dart';
 
@@ -21,7 +22,7 @@ class _HomeState extends State<Home> {
 
   Giphy _giphyService;
 
-  List<GifDTO> gifs = [];
+  List<GifDTO> _gifs = [];
 
   @override
   void initState() {
@@ -36,7 +37,7 @@ class _HomeState extends State<Home> {
     List<GifDTO> items = _giphyService.unserializeData(serializedData);
 
     setState(() {
-      gifs = items;
+      _gifs = items;
     });
   }
 
@@ -47,7 +48,8 @@ class _HomeState extends State<Home> {
       backgroundColor: Colors.black,
       body: Column(
         children: <Widget>[
-          SearchForm()
+          SearchForm(),
+          GifTable(this._gifs)
         ],
       )
     );
