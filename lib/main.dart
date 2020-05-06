@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:gif_searcher/src/presentation/screens/home.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:gif_searcher/src/presentation/screen/home.dart';
 
-void main() => runApp(MaterialApp(
-  home: Home()
-));
+void main() async {
+  await DotEnv().load('.env');
+
+  String giphyKey = DotEnv().env['GIPHY_KEY'];
+
+  runApp(MaterialApp(
+    home: Home(giphyKey)
+  ));
+}
