@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gif_searcher/src/model/dto/gif.dart';
 import 'package:gif_searcher/src/model/service/giphy.dart';
+import 'package:gif_searcher/src/presentation/widgets/header.dart';
 
 class Home extends StatefulWidget {
   final String giphyKey;
@@ -40,6 +41,8 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return Text('Gif searcher!');
+    return Scaffold(
+      appBar: Header()
+    );
   }
 }
