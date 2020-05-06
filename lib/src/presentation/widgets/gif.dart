@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:gif_searcher/src/model/dto/gif.dart';
 import 'package:gif_searcher/src/presentation/screen/gif.dart';
 import 'package:share/share.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class Gif extends StatelessWidget {
   final String id;
@@ -14,10 +15,10 @@ class Gif extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      child: Image.network(
-        url,
-        height: 30,
-        fit: BoxFit.cover
+      child: FadeInImage.memoryNetwork(
+        image: url,
+        placeholder: kTransparentImage,
+        height: 300,
       ),
       onTap: () {
         Navigator.push(

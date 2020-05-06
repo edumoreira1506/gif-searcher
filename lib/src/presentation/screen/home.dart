@@ -22,12 +22,9 @@ class _HomePageState extends State<HomePage> {
 
   Giphy _giphyService;
 
-  bool _featured;
-
+  bool _featured = true;
   List<GifDTO> _gifs = [];
-
   int _offset = 19;
-
   String _keyword;
 
   @override
