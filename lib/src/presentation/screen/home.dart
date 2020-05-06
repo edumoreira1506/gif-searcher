@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:gif_searcher/src/model/dto/gif.dart';
 import 'package:gif_searcher/src/model/service/giphy.dart';
 import 'package:gif_searcher/src/presentation/widgets/header.dart';
+import 'package:gif_searcher/src/presentation/widgets/search_form.dart';
 
 class Home extends StatefulWidget {
   final String giphyKey;
@@ -42,7 +43,13 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: Header()
+      appBar: Header(),
+      backgroundColor: Colors.black,
+      body: Column(
+        children: <Widget>[
+          SearchForm()
+        ],
+      )
     );
   }
 }

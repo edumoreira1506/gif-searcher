@@ -8,6 +8,7 @@ void main() async {
   String giphyKey = DotEnv().env['GIPHY_KEY'];
 
   runApp(MaterialApp(
-    home: Home(giphyKey)
+    home: Home(giphyKey),
+    theme: ThemeData(hintColor: Colors.white)
   ));
 }
