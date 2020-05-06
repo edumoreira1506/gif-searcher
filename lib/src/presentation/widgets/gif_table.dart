@@ -24,7 +24,11 @@ class GifTable extends StatelessWidget {
         itemCount: this._featured ? this._gifs.length : this._gifs.length + 1,
         itemBuilder: (context, index) =>
           index < this._gifs.length
-           ? Gif(this._gifs[index].id, this._gifs[index].slug, this._gifs[index].url)
+           ? Gif(
+              this._gifs[index].id,
+              this._gifs[index].slug,
+              this._gifs[index].url
+            )
            : LoadButton(this.onLoadMore)
       )
     );

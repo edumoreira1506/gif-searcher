@@ -6,19 +6,19 @@ import 'package:gif_searcher/src/presentation/widgets/gif_table.dart';
 import 'package:gif_searcher/src/presentation/widgets/header.dart';
 import 'package:gif_searcher/src/presentation/widgets/search_form.dart';
 
-class Home extends StatefulWidget {
+class HomePage extends StatefulWidget {
   final String giphyKey;
 
-  Home(this.giphyKey);
+  HomePage(this.giphyKey);
 
   @override
-  _HomeState createState() => _HomeState(this.giphyKey);
+  _HomePageState createState() => _HomePageState(this.giphyKey);
 }
 
-class _HomeState extends State<Home> {
+class _HomePageState extends State<HomePage> {
   final String giphyKey;
 
-  _HomeState(this.giphyKey);
+  _HomePageState(this.giphyKey);
 
   Giphy _giphyService;
 
@@ -76,7 +76,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: Header(),
+      appBar: Header(Image.network('https://developers.giphy.com/static/img/dev-logo-lg.7404c00322a8.gif')),
       backgroundColor: Colors.black,
       body: Column(
         children: <Widget>[
