@@ -41,6 +41,15 @@ class _HomeState extends State<Home> {
     });
   }
 
+  _searchGifs(keyword) async {
+    Map serializedData = await _giphyService.search(keyword);
+    List<GifDTO> items = _giphyService.unserializeData(serializedData);
+
+    setState(() {
+      _gifs = items;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +57,7 @@ class _HomeState extends State<Home> {
       backgroundColor: Colors.black,
       body: Column(
         children: <Widget>[
-          SearchForm(),
+          SearchForm(_searchGifs),
           GifTable(this._gifs)
         ],
       )
